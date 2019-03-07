@@ -120,12 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/' #the URL to use when referring to static files located in STATIC_ROOT
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #the absolute path to the directory where collectstatic will collect static files for deployment.
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL ='index'
 LOGOUT_REDIRECT_URL ='index'
-
-django_heroku.settings(locals())
