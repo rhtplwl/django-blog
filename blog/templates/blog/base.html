@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="Rohit Paliwal">
+      <title>{{ title }}</title>
+      <!-- Bootstrap core CSS -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+  </head>
+
+  <body>
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <h1><a class="navbar-brand" href="{% url 'index' %}">My Blog</a></h1>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item {% if nbar == 'index' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item {% if nbar == 'post_list' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'post_list' %}">All Posts</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                      <li class="nav-item {% if nbar == 'post_new' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'post_new' %}" tabindex="-1" >Add New Post</a>
+                      </li>
+                    {% endif %}
+                </ul>
+                {% if user.is_authenticated %}
+                <h3>{{ user.username }}</h3>
+                <a href="{% url 'logout' %}">[Logout]</a>
+                {% else %}
+                    <h3><a href="{% url 'login' %}">Login</a></h3>
+                {% endif %}
+{#                <form class="form-inline my-2 my-lg-0">#}
+{#                  <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">#}
+{#                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#                </form>#}
+            </div>
+        </div>
+      </nav>
+      <br>
+  {% block content %}
+  {% endblock %}
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
