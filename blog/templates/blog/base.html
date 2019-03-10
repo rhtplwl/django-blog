@@ -41,8 +41,10 @@
                 <h3>{{ user.username }}</h3>
                 <a href="{% url 'logout' %}">[Logout]</a>
                 {% else %}
-                    <h3><a href="{% url 'login' %}">Login</a></h3>
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-secondary btn-md login">Login</button></a>
+                    <a href="{% url 'signup' %}"><button type="button" class="btn btn-secondary btn-md">Sign Up</button></a>
                 {% endif %}
+
 {#                <form class="form-inline my-2 my-lg-0">#}
 {#                  <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">#}
 {#                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
